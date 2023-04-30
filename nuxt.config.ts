@@ -10,7 +10,6 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.scss'],
   modules: [
-    '@nuxtjs/device',
     [
       '@nuxtjs/google-adsense',
       {
@@ -18,6 +17,12 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  runtimeConfig: {
+    public: {
+      supabaseUrl: '',
+      supabaseKey: '',
+    },
+  },
   vite: {
     css: {
       preprocessorOptions: {
