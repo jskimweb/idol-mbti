@@ -1,27 +1,71 @@
 <template>
   <div class="mbti-selector">
-    <div v-for="char in MBTI" class="mbti-btn" @click="toggleBtnState">
-      <span class="btn-text">{{ char }}</span>
+    <div v-for="options in mbti" class="option-group">
+      <button
+        v-for="option in options"
+        class="option"
+        :class="{ active: option.isActived }"
+        @click="onClickMbtiBtn"
+      >
+        <span class="btn-text">{{ option.name }}</span>
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const MBTI = ['E', 'S', 'T', 'J', 'I', 'N', 'F', 'P'];
+const mbti = reactive([
+  [
+    { name: 'E', isActived: false },
+    { name: 'I', isActived: false },
+  ],
+  [
+    { name: 'S', isActived: false },
+    { name: 'N', isActived: false },
+  ],
+  [
+    { name: 'T', isActived: false },
+    { name: 'F', isActived: false },
+  ],
+  [
+    { name: 'J', isActived: false },
+    { name: 'P', isActived: false },
+  ],
+]);
 
-function toggleBtnState(e: MouseEvent) {
+function onClickMbtiBtn(e: MouseEvent) {
   const target = e.target as HTMLDivElement;
-  target.classList.toggle('active');
+
+  for (const options of mbti) {
+    const optionIdx = options.findIndex((option) => {
+      return option.name === target.innerText;
+    });
+    if (optionIdx > -1) {
+      if (options[optionIdx].isActived) {
+        options[optionIdx].isActived = false;
+      } else {
+        for (const option of options) {
+          option.isActived = false;
+        }
+        options[optionIdx].isActived = true;
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .mbti-selector {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: 10px;
   padding-top: 20px;
-  .mbti-btn {
+  .option-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .option {
     display: flex;
     justify-content: center;
     align-items: center;
