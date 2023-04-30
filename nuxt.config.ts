@@ -1,4 +1,13 @@
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: '아이돌 MBTI',
+      meta: [
+        { name: 'title', content: '아이돌 MBTI' },
+        { name: 'description', content: '나랑 같은 MBTI를 가진 아이돌은 누구일까?' },
+      ],
+    },
+  },
   css: ['~/assets/css/main.scss'],
   modules: [
     '@nuxtjs/device',
