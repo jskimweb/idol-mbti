@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   height: $main-header-height;
+  background: rgb(70, 203, 255);
   .main-logo {
     height: 60%;
     object-fit: contain;

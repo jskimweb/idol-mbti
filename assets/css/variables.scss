@@ -1,5 +1,6 @@
 $main-header-height: 10vh;
 $main-footer-height: 10vh;
+$main-content-height: calc(100vh - #{$main-header-height} - #{$main-footer-height});
 
 @media (orientation: portrait) {
   $main-header-height: 20vw;
