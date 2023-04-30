@@ -1,0 +1,17 @@
+@mixin main-header-height() {
+  @media (orientation: landscape) {
+    height: 10vh;
+  }
+  @media (orientation: portrait) {
+    height: 20vw;
+  }
+}
+
+@mixin main-footer-height() {
+  @media (orientation: landscape) {
+    height: 10vh;
+  }
+  @media (orientation: portrait) {
+    height: 20vw;
+  }
+}
