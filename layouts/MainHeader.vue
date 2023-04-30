@@ -6,10 +6,10 @@
 
 <style lang="scss" scoped>
 .main-header {
-  @include main-header-height;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: $main-header-height;
   .main-logo {
     height: 60%;
     object-fit: contain;

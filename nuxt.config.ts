@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   css: ['~/assets/css/main.scss'],
   modules: ['@nuxtjs/device'],
@@ -6,7 +5,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "~/assets/css/mixins.scss";',
+          additionalData: '@import "~/assets/css/variables.scss";',
         },
       },
     },

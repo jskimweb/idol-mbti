@@ -1,0 +1,7 @@
+$main-header-height: 10vh;
+$main-footer-height: 10vh;
+
+@media (orientation: portrait) {
+  $main-header-height: 20vw;
+  $main-footer-height: 20vw;
+}

@@ -4,10 +4,10 @@
 
 <style lang="scss" scoped>
 .main-footer {
-  @include main-header-height;
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: $main-footer-height;
   background-image: url('~/assets/img/main-footer.png');
   background-size: 100%;
   @media (orientation: portrait) {
