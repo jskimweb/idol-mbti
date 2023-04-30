@@ -1,0 +1,43 @@
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  user-select: none;
+}
+
+html {
+  font-size: 10px;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Galmuri9', sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+img {
+  width: 100%;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
