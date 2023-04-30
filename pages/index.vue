@@ -2,12 +2,12 @@
   <div class="content">
     <span class="desc">나랑 같은 MBTI를 가진 아이돌은 누굴까?</span>
     <span class="my-mbti">내 MBTI 는</span>
-    <MbtiSelctor />
+    <MbtiButtons />
   </div>
 </template>
 
 <script setup lang="ts">
-import MbtiSelctor from '~/components/MbtiSelector.vue';
+import MbtiButtons from '~/components/MbtiButtons.vue';
 </script>
 
 <style lang="scss" scoped>
