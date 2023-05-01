@@ -1,6 +1,7 @@
 @import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 
 * {
+  font-family: 'Galmuri9', sans-serif;
   box-sizing: border-box;
   margin: 0;
   user-select: none;
@@ -13,7 +14,6 @@ html {
 }
 
 body {
-  font-family: 'Galmuri9', sans-serif;
   font-size: 2rem;
   line-height: 1;
 }

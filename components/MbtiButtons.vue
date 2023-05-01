@@ -13,11 +13,11 @@
       </div>
     </div>
     <div class="menu-buttons">
-      <button class="menu-btn start" :class="{ disable: !canStart }" @click="start">
-        <span class="menu-btn-text">START</span>
-      </button>
       <button class="menu-btn clear" @click="clear">
-        <span class="menu-btn-text">CLEAR</span>
+        <span class="menu-btn-text">초기화</span>
+      </button>
+      <button class="menu-btn start" :class="{ disable: !canStart }" @click="start">
+        <span class="menu-btn-text">시작</span>
       </button>
     </div>
   </div>
@@ -105,6 +105,7 @@ function clear() {
     .btn-text {
       font-size: 24px;
       color: white;
+      padding: 0 0 2px 2px;
     }
     &.active {
       background: url('~/assets/img/mbti-button-active.png') no-repeat center;
@@ -131,18 +132,11 @@ function clear() {
     cursor: pointer;
     .menu-btn-text {
       font-size: 18px;
+      padding-bottom: 2px;
     }
     &:active {
       .menu-btn-text {
         opacity: 0.5;
-      }
-    }
-    &.start {
-      background: url('~/assets/img/menu-button.png') no-repeat center;
-      background-size: cover;
-      &:active {
-        background: url('~/assets/img/menu-button-active.png') no-repeat center;
-        background-size: cover;
       }
     }
     &.clear {
@@ -150,6 +144,14 @@ function clear() {
       background-size: cover;
       &:active {
         background: url('~/assets/img/clear-button-active.png') no-repeat center;
+        background-size: cover;
+      }
+    }
+    &.start {
+      background: url('~/assets/img/start-button.png') no-repeat center;
+      background-size: cover;
+      &:active {
+        background: url('~/assets/img/start-button-active.png') no-repeat center;
         background-size: cover;
       }
     }
