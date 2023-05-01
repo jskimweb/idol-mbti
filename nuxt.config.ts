@@ -5,6 +5,17 @@ export default defineNuxtConfig({
       meta: [
         { name: 'title', content: '아이돌 MBTI' },
         { name: 'description', content: '나랑 같은 MBTI를 가진 아이돌은 누구일까?' },
+        { name: 'keywords', content: '아이돌, MBTI, 아이돌 MBTI' },
+        { property: 'og:title', content: '아이돌 MBTI' },
+        {
+          property: 'og:description',
+          content: '나랑 같은 MBTI를 가진 아이돌은 누구일까?',
+        },
+        { name: 'twitter:title', content: '아이돌 MBTI' },
+        {
+          name: 'twitter:description',
+          content: '나랑 같은 MBTI를 가진 아이돌은 누구일까?',
+        },
       ],
     },
   },
