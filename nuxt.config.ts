@@ -17,6 +17,12 @@ export default defineNuxtConfig({
           content: '나랑 같은 MBTI를 가진 아이돌은 누구일까?',
         },
       ],
+      script: [
+        {
+          src: '//t1.daumcdn.net/kas/static/ba.min.js',
+          async: true,
+        },
+      ],
     },
   },
   css: ['~/assets/css/main.scss'],

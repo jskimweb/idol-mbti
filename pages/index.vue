@@ -1,8 +1,26 @@
 <template>
   <div class="content">
-    <span class="desc">나랑 같은 MBTI를 가진 아이돌은 누굴까?</span>
+    <span class="desc">나랑 같은 MBTI를 가진 아이돌은 누구일까?</span>
     <span class="my-mbti">내 MBTI 는</span>
     <MbtiButtons />
+    <div class="kakao-ad-pc">
+      <ins
+        class="kakao_ad_area"
+        style="display: none"
+        data-ad-unit="DAN-zGSQtjerLpXEfzfu"
+        data-ad-width="160"
+        data-ad-height="600"
+      />
+    </div>
+    <div class="kakao-ad-mb">
+      <ins
+        class="kakao_ad_area"
+        style="display: none"
+        data-ad-unit="DAN-sbq56OopcvrSvEkZ"
+        data-ad-width="320"
+        data-ad-height="50"
+      />
+    </div>
   </div>
 </template>
 
@@ -12,6 +30,7 @@ import MbtiButtons from '~/components/MbtiButtons.vue';
 
 <style lang="scss" scoped>
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,6 +48,24 @@ import MbtiButtons from '~/components/MbtiButtons.vue';
   .my-mbti {
     font-size: 40px;
     padding-top: 10px;
+  }
+  .kakao-ad-pc {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    @media (orientation: portrait) {
+      display: none;
+    }
+  }
+  .kakao-ad-mb {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    @media (orientation: landscape) {
+      display: none;
+    }
   }
 }
 </style>
