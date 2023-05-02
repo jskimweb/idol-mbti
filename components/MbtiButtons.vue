@@ -16,7 +16,7 @@
       <button class="menu-btn clear" @click="clear">
         <span class="menu-btn-text">초기화</span>
       </button>
-      <button class="menu-btn start" :class="{ disable: !canStart }" @click="start">
+      <button class="menu-btn start" :disabled="!canStart" @click="start">
         <span class="menu-btn-text">시작</span>
       </button>
     </div>
@@ -51,6 +51,15 @@ const canStart = computed(() => {
   });
 });
 
+const selectedMbti = computed(() => {
+  const mbtiString = mbti
+    .map((options) => {
+      return options.find((option) => option.isActived)?.name;
+    })
+    .join('');
+  return mbtiString.length === 4 ? mbtiString : '';
+});
+
 function onClickMbtiBtn(e: MouseEvent) {
   const target = e.target as HTMLDivElement;
 
@@ -71,7 +80,9 @@ function onClickMbtiBtn(e: MouseEvent) {
   }
 }
 
-function start() {}
+function start() {
+  alert(selectedMbti.value);
+}
 
 function clear() {
   for (const options of mbti) {
