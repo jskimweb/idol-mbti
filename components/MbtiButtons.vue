@@ -16,7 +16,7 @@
       <button class="menu-btn clear" @click="clear">
         <span class="menu-btn-text">초기화</span>
       </button>
-      <button class="menu-btn start" :disabled="!canStart" @click="start">
+      <button class="menu-btn start" :disabled="!selectedMbti" @click="start">
         <span class="menu-btn-text">시작</span>
       </button>
     </div>
@@ -42,14 +42,6 @@ const mbti = reactive([
     { name: 'P', isActived: false },
   ],
 ]);
-
-const canStart = computed(() => {
-  return mbti.every((options) => {
-    return options.some((option) => {
-      return option.isActived;
-    });
-  });
-});
 
 const selectedMbti = computed(() => {
   const mbtiString = mbti
