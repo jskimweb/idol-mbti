@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+const router = useRouter();
+
 const mbti = reactive([
   [
     { name: 'E', isActived: false },
@@ -72,8 +74,8 @@ function onClickMbtiBtn(e: MouseEvent) {
   }
 }
 
-function start() {
-  alert(selectedMbti.value);
+async function start() {
+  router.push({ name: 'list', query: { mbti: selectedMbti.value } });
 }
 
 function clear() {
