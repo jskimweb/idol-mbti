@@ -11,6 +11,13 @@ export default defineNuxtConfig({
           property: 'og:description',
           content: '나랑 같은 MBTI를 가진 아이돌은 누구일까?',
         },
+        {
+          property: 'og:image',
+          content:
+            'https://zqvsucyrjbczmyguvlgv.supabase.co/storage/v1/object/public/etc/og-image.png',
+        },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://idol-mbti.vercel.app/' },
         { name: 'twitter:title', content: '아이돌 MBTI' },
         {
           name: 'twitter:description',
