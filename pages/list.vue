@@ -1,8 +1,14 @@
 <template>
   <div class="list-page">
     <div v-for="item in list" :key="item.id" class="card">
-      <span class="card-text">{{ item.name }}</span>
-      <span class="card-text">{{ item.group }}</span>
+      <span class="pixel top-left" />
+      <span class="pixel top-right" />
+      <span class="pixel bot-left" />
+      <span class="pixel bot-right" />
+      <div class="card-text-group">
+        <span class="card-text">{{ item.name }}</span>
+        <span class="card-text">{{ item.group }}</span>
+      </div>
       <img class="card-image" :src="item.photo" alt="프로필 사진" />
     </div>
   </div>
@@ -32,45 +38,62 @@ async function fetchList() {
 </script>
 
 <style lang="scss" scoped>
+$pixel: 8px;
+
 .list-page {
+  position: relative;
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(calc(#{$pixel} * 30), 1fr));
   gap: 10px;
+  .pixel {
+    position: absolute;
+    width: $pixel;
+    height: $pixel;
+    background-color: black;
+    &.top-left {
+      top: calc(0% + #{$pixel});
+      left: calc(0% + #{$pixel});
+    }
+    &.top-right {
+      top: calc(0% + #{$pixel});
+      right: calc(0% + #{$pixel});
+    }
+    &.bot-left {
+      bottom: calc(0% + #{$pixel});
+      left: calc(0% + #{$pixel});
+    }
+    &.bot-right {
+      bottom: calc(0% + #{$pixel});
+      right: calc(0% + #{$pixel});
+    }
+  }
   .card {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 200px;
-    background-color: black;
-    border-radius: 10px;
-    padding: 10px;
-    .card-text {
-      font-size: 20px;
-      color: rgba(255, 255, 255, 0.5);
-      z-index: 1;
-    }
-    .card-image {
+    width: calc(#{$pixel} * 30);
+    height: calc(#{$pixel} * 40);
+    background: url('~/assets/img/card.png') no-repeat center;
+    background-size: contain;
+    padding: $pixel;
+    margin: 0 auto;
+    .card-text-group {
       position: absolute;
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%);
+      .card-text {
+        display: block;
+        font-size: 20px;
+        text-align: center;
+        color: white;
+      }
+    }
+    .card-image {
       height: 100%;
       object-fit: cover;
-      border-radius: inherit;
-      transition: all 0.3s ease-in-out;
-    }
-    &:hover {
-      .card-text {
-        color: rgba(255, 255, 255, 1);
-      }
-      .card-image {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) opacity(1) scale(1.2);
-      }
     }
   }
 }
