@@ -11,6 +11,13 @@
         data-ad-width="160"
         data-ad-height="600"
       />
+      <ins
+        class="kakao_ad_area"
+        style="display: none"
+        data-ad-unit="DAN-na6vrlubIJvnJ5ia"
+        data-ad-width="160"
+        data-ad-height="600"
+      />
     </div>
     <div class="kakao-ad-mb">
       <ins
@@ -52,6 +59,9 @@ import MbtiButtons from '~/components/MbtiButtons.vue';
     left: 0;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     @media (orientation: portrait) {
       display: none;
     }
