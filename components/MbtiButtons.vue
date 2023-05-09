@@ -102,8 +102,8 @@ function clear() {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     background: url('~/assets/img/mbti-button.png') no-repeat center;
     background-size: contain;
     cursor: pointer;
