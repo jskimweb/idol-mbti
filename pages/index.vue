@@ -3,7 +3,7 @@
     <span class="desc">나랑 같은 MBTI를 가진 아이돌은 누구일까?</span>
     <span class="my-mbti">내 MBTI 는</span>
     <MbtiButtons />
-    <div class="kakao-ad-pc">
+    <div class="kakao-ad-pc left">
       <ins
         class="kakao_ad_area"
         style="display: none"
@@ -11,6 +11,8 @@
         data-ad-width="160"
         data-ad-height="600"
       />
+    </div>
+    <div class="kakao-ad-pc right">
       <ins
         class="kakao_ad_area"
         style="display: none"
@@ -56,14 +58,16 @@ import MbtiButtons from '~/components/MbtiButtons.vue';
   }
   .kakao-ad-pc {
     position: absolute;
-    left: 0;
     top: 50%;
     transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
     @media (orientation: portrait) {
       display: none;
+    }
+    &.left {
+      left: 0;
+    }
+    &.right {
+      right: 0;
     }
   }
   .kakao-ad-mb {
