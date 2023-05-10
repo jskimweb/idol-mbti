@@ -14,10 +14,13 @@
     </div>
     <div class="menu-buttons">
       <button class="menu-btn clear" @click="clear">
-        <span class="menu-btn-text">초기화</span>
+        <span class="menu-btn-text">리셋</span>
       </button>
       <button class="menu-btn start" :disabled="!selectedMbti" @click="start">
         <span class="menu-btn-text">시작</span>
+      </button>
+      <button class="menu-btn gender" @click="changeGender">
+        <span class="menu-btn-text">{{ currentGenderName }}</span>
       </button>
     </div>
   </div>
@@ -25,6 +28,16 @@
 
 <script setup lang="ts">
 const router = useRouter();
+
+interface IGenderMap {
+  [key: string]: { key: string; name: string };
+}
+
+const GENDER_MAP: IGenderMap = {
+  all: { key: 'all', name: '전체' },
+  male: { key: 'male', name: '남돌' },
+  female: { key: 'female', name: '여돌' },
+};
 
 const mbti = reactive([
   [
@@ -44,6 +57,11 @@ const mbti = reactive([
     { name: 'P', isActived: false },
   ],
 ]);
+const currentGender = ref(
+  process.client
+    ? localStorage.getItem('genderSetting') || GENDER_MAP.all.key
+    : GENDER_MAP.all.key
+);
 
 const selectedMbti = computed(() => {
   const mbtiString = mbti
@@ -52,6 +70,10 @@ const selectedMbti = computed(() => {
     })
     .join('');
   return mbtiString.length === 4 ? mbtiString : '';
+});
+
+const currentGenderName = computed(() => {
+  return GENDER_MAP[currentGender.value]?.name;
 });
 
 function onClickMbtiBtn(e: MouseEvent) {
@@ -75,7 +97,10 @@ function onClickMbtiBtn(e: MouseEvent) {
 }
 
 async function start() {
-  router.push({ name: 'list', query: { mbti: selectedMbti.value } });
+  router.push({
+    name: 'list',
+    query: { mbti: selectedMbti.value, gender: GENDER_MAP[currentGender.value].key },
+  });
 }
 
 function clear() {
@@ -83,6 +108,27 @@ function clear() {
     for (const option of options) {
       option.isActived = false;
     }
+  }
+  currentGender.value = 'all';
+  if (process.client) {
+    localStorage.setItem('genderSetting', currentGender.value);
+  }
+}
+
+function changeGender() {
+  switch (currentGender.value) {
+    case 'all':
+      currentGender.value = 'male';
+      break;
+    case 'male':
+      currentGender.value = 'female';
+      break;
+    case 'female':
+      currentGender.value = 'all';
+      break;
+  }
+  if (process.client) {
+    localStorage.setItem('genderSetting', currentGender.value);
   }
 }
 </script>
@@ -137,7 +183,7 @@ function clear() {
     cursor: pointer;
     .menu-btn-text {
       font-size: 18px;
-      padding-bottom: 2px;
+      padding-bottom: 4px;
     }
     &:active {
       .menu-btn-text {
@@ -145,11 +191,15 @@ function clear() {
       }
     }
     &.clear {
+      width: 75px;
       background: url('~/assets/img/clear-button.png') no-repeat center;
-      background-size: cover;
+      background-size: contain;
       &:active {
         background: url('~/assets/img/clear-button-active.png') no-repeat center;
-        background-size: cover;
+        background-size: contain;
+      }
+      .menu-btn-text {
+        font-size: 15px;
       }
     }
     &.start {
@@ -158,6 +208,18 @@ function clear() {
       &:active {
         background: url('~/assets/img/start-button-active.png') no-repeat center;
         background-size: cover;
+      }
+    }
+    &.gender {
+      width: 75px;
+      background: url('~/assets/img/gender-button.png') no-repeat center;
+      background-size: contain;
+      &:active {
+        background: url('~/assets/img/gender-button-active.png') no-repeat center;
+        background-size: contain;
+      }
+      .menu-btn-text {
+        font-size: 15px;
       }
     }
   }

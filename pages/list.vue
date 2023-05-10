@@ -22,18 +22,28 @@ const router = useRouter();
 
 const list = ref([]);
 
-const mbti = route.query.mbti;
-
 fetchList();
 
 async function fetchList() {
+  const { mbti, gender } = route.query;
   if (!mbti) return router.replace({ name: 'index' });
-  const { data } = await supabase
-    .from('idol-mbti')
-    .select()
-    .eq('mbti', mbti)
-    .order('name', { ascending: true });
-  list.value = data;
+
+  if (gender === 'all') {
+    const { data } = await supabase
+      .from('idol-mbti')
+      .select()
+      .eq('mbti', mbti)
+      .order('name', { ascending: true });
+    list.value = data;
+  } else {
+    const { data } = await supabase
+      .from('idol-mbti')
+      .select()
+      .eq('mbti', mbti)
+      .eq('gender', gender)
+      .order('name', { ascending: true });
+    list.value = data;
+  }
 }
 </script>
 
