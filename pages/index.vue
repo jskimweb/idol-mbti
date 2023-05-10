@@ -35,6 +35,15 @@
 
 <script setup lang="ts">
 import MbtiButtons from '~/components/MbtiButtons.vue';
+
+onMounted(runKakaoAdfit);
+
+function runKakaoAdfit() {
+  const script = document.createElement('script');
+  script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+  script.async = true;
+  document.body.appendChild(script);
+}
 </script>
 
 <style lang="scss" scoped>
