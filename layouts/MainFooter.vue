@@ -28,6 +28,8 @@ function goHome() {
   }
   .btn-home {
     font-size: 20px;
+    color: white;
+    cursor: pointer;
   }
 }
 </style>
