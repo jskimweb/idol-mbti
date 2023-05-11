@@ -12,7 +12,13 @@
           <span class="card-text">{{ item.name }}</span>
           <span class="card-text">{{ item.group }}</span>
         </div>
-        <img class="card-image" :src="item.photo" alt="프로필 사진" />
+        <img
+          class="card-image"
+          :src="item.photo"
+          loading="lazy"
+          decoding="async"
+          alt="프로필 사진"
+        />
       </div>
     </div>
   </div>
@@ -97,16 +103,43 @@ $pixel: 8px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: calc(#{$pixel} + 10px);
+    opacity: 0.5;
+    z-index: 1;
     .card-text {
       display: block;
       font-size: 20px;
+      line-height: 24px;
       text-align: center;
+      word-break: keep-all;
       color: white;
     }
   }
   .card-image {
     height: 100%;
     object-fit: cover;
+    content-visibility: auto;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    width: calc(100% - (#{$pixel} * 2));
+    height: calc(100% - (#{$pixel} * 2));
+    background-color: black;
+    opacity: 0;
+    z-index: 1;
+  }
+  &:hover {
+    &::before {
+      opacity: 0.5;
+    }
+    .card-text-group {
+      opacity: 1;
+    }
   }
 }
 
@@ -115,6 +148,7 @@ $pixel: 8px;
   width: $pixel;
   height: $pixel;
   background-color: black;
+  z-index: 1;
   &.top-left {
     top: calc(0% + #{$pixel});
     left: calc(0% + #{$pixel});
