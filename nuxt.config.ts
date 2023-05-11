@@ -27,14 +27,6 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/main.scss'],
-  modules: [
-    [
-      '@nuxtjs/google-adsense',
-      {
-        id: 'ca-pub-2989723158324203',
-      },
-    ],
-  ],
   runtimeConfig: {
     public: {
       supabaseUrl: '',

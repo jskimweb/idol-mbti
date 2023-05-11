@@ -28,7 +28,5 @@
     "sass-loader": "10",
     "typescript": "*"
   },
-  "dependencies": {
-    "@nuxtjs/google-adsense": "^2.1.0"
-  }
+  "dependencies": {}
 }
