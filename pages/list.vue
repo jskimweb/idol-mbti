@@ -12,13 +12,7 @@
           <span class="card-text">{{ item.name }}</span>
           <span class="card-text">{{ item.group }}</span>
         </div>
-        <img
-          class="card-image"
-          :src="item.photo"
-          loading="lazy"
-          decoding="async"
-          alt="프로필 사진"
-        />
+        <img class="card-image" :src="item.photo" alt="프로필 사진" />
       </div>
     </div>
   </div>
