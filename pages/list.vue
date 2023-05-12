@@ -9,6 +9,9 @@
         <span class="pixel bot-left" />
         <span class="pixel bot-right" />
         <div class="card-text-group">
+          <span v-if="isGroupPage" class="card-text">
+            {{ item.mbti.toUpperCase() }}
+          </span>
           <span class="card-text">{{ item.name }}</span>
           <span class="card-text">{{ item.group }}</span>
           <button
