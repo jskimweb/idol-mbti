@@ -27,6 +27,10 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/main.scss'],
+  gtag: {
+    id: 'G-H9BNXBXCX8',
+  },
+  modules: ['nuxt-gtag'],
   runtimeConfig: {
     public: {
       supabaseUrl: '',
