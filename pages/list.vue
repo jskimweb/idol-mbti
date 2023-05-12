@@ -16,7 +16,7 @@
           <span class="card-text">{{ item.group }}</span>
           <button
             class="btn-more"
-            :class="{ 'group-page': isGroupPage }"
+            :class="{ hide: !item.group || isGroupPage }"
             @click="fetchMembers(item.group)"
           >
             MORE
@@ -146,7 +146,7 @@ $pixel: 8px;
       &:hover {
         color: blue;
       }
-      &.group-page {
+      &.hide {
         display: none;
       }
     }
