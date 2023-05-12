@@ -11,6 +11,13 @@
         <div class="card-text-group">
           <span class="card-text">{{ item.name }}</span>
           <span class="card-text">{{ item.group }}</span>
+          <button
+            class="btn-more"
+            :class="{ 'group-page': isGroupPage }"
+            @click="fetchMembers(item.group)"
+          >
+            MORE
+          </button>
         </div>
         <img class="card-image" :src="item.photo" alt="프로필 사진" />
       </div>
@@ -28,16 +35,25 @@ const isLoading = ref(false);
 const list = ref([]);
 
 const isEmpty = computed(() => list.value.length === 0);
+const isGroupPage = computed(() => Object.keys(route.query).includes('group'));
+
+watch(() => route.query, fetchList, { deep: true });
 
 fetchList();
 
 async function fetchList() {
-  const { mbti, gender } = route.query;
-  if (!mbti) return router.replace({ name: 'index' });
+  const { mbti, gender, group } = route.query;
 
   isLoading.value = true;
   try {
-    if (gender === 'all') {
+    if (group) {
+      const { data } = await supabase
+        .from('idol-mbti')
+        .select()
+        .eq('group', group)
+        .order('name', { ascending: true });
+      list.value = data;
+    } else if (gender === 'all') {
       const { data } = await supabase
         .from('idol-mbti')
         .select()
@@ -56,6 +72,10 @@ async function fetchList() {
   } finally {
     isLoading.value = false;
   }
+}
+
+function fetchMembers(group) {
+  router.push({ name: 'list', query: { group } });
 }
 </script>
 
@@ -101,7 +121,7 @@ $pixel: 8px;
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    padding: calc(#{$pixel} + 10px);
+    padding: 0 calc(#{$pixel} + 10px);
     opacity: 0.5;
     z-index: 1;
     .card-text {
@@ -111,6 +131,21 @@ $pixel: 8px;
       text-align: center;
       word-break: keep-all;
       color: white;
+    }
+    .btn-more {
+      position: absolute;
+      left: 50%;
+      bottom: -20px;
+      transform: translateX(-50%);
+      color: yellow;
+      opacity: 0;
+      cursor: pointer;
+      &:hover {
+        color: blue;
+      }
+      &.group-page {
+        display: none;
+      }
     }
   }
   .card-image {
@@ -133,6 +168,9 @@ $pixel: 8px;
     }
     .card-text-group {
       opacity: 1;
+      .btn-more {
+        opacity: 1;
+      }
     }
   }
 }
